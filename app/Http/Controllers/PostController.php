@@ -86,13 +86,13 @@ class PostController extends Controller
 
     public function contact(){
 
-        $people = ['name1', 'name2', 'name3'];
+        $people = ['name1', 'name2', 'name3']; // Creating an array
 
-        return view('contact', compact('people'));
+        return view('contact', compact('people')); // Returning the created array to the contact view.
     }
 
-    public function show_posts($id, $name){
+    public function show_posts($id, $name){ // This method passes the $id and $name values.
 
-        return view('post', compact('id', 'name'));
+        return view('post', compact('id', 'name')); // Returning the values of id and name to the post view where they can be used.
     }
 }
