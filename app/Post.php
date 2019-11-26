@@ -30,4 +30,11 @@ class Post extends Model // The post model inherits functionality from it's pare
         return $this->morphMany('App\Photo', 'imageable');
 
     }
+
+    public function tags(){
+
+        return $this->morphToMany('App\Tag', 'taggable');
+
+
+    }
 }

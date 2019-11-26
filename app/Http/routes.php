@@ -1,8 +1,11 @@
 <?php
 
 use App\Country;
+use App\Photo;
 use App\Post; // Importing the Post model so that I can use Eloquent ORM
 use App\User;
+use App\Tag;
+use App\Video;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -301,29 +304,78 @@ Route::get('/', function () {
 //
 //});
 
-// Polymorphic relates
+// Polymorphic relations
 
-Route::get('/user/photos', function (){
+//Route::get('/user/photos', function (){ // Pulling out a users photo.
+//
+//   $user = User::find(1); // Finding the user id.
+//
+//    foreach ($user->photos as $photo){
+//
+//       return $photo->path; // Pulling out the path of the image that is related to the user.
+//
+//   }
+//
+//});
+//
+//Route::get('/post/{id}/photos', function ($id){
+//
+//    $post = Post::find($id); // Find post id
+//
+//    foreach ($post->photos as $photo) {
+//
+//        echo $photo->path . "</br>"; // echoing multiple photo paths that is related to the post id.
+//
+//    }
+//
+//});
 
-   $user = User::find(1);
 
-    foreach ($user->photos as $photo){
+//Route::get('photo/{id}/post', function ($id){ // Finds the owner of a photo id.
+//
+//   $photo = Photo::findOrFail($id);
+//
+//   return $photo->imageable;
+//
+//});
 
-       return $photo->path;
+// Polymorphic many to many relationships
+
+//Route::get('post/tag', function () {
+//
+//    $post = Post::find(1);
+//
+//    foreach ($post->tags as $tag){
+//
+//        return $tag->name;
+//
+//    }
+//
+//});
+
+Route::get('tag/post', function(){
+
+   $tag = Tag::find(2);
+
+   foreach($tag->posts as $post){
+
+       return $post->title;
 
    }
 
 });
 
-Route::get('/post/{id}/photos', function ($id){
 
-    $post = Post::find($id);
+Route::get('video/{id}/tag', function ($id){ // Finds the owner of a tag id.
 
-    foreach ($post->photos as $photo) {
+    $tag = Tag::find($id); // Finds the id of a tag in the database table.
 
-        echo $photo->path . "</br>";
+    foreach ($tag->videos as $video){ // Using the videos method and looping through the different videos that are in the database.
+
+        return $video->name; // Prints out the name of the video which is related the tag id of 1.
 
     }
+
 
 });
 
