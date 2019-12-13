@@ -353,34 +353,41 @@ Route::get('/', function () {
 //
 //});
 
-Route::get('tag/post', function(){
+//Route::get('tag/post', function(){ // Finds the owner of a post through the tag.
+//
+//   $tag = Tag::find(2); // Finds the tag with the id of 2 in the database.
+//
+//   foreach($tag->posts as $post){ // Pulling all the posts that are in the database.
+//
+//       return $post->title; // Printing the posts title that is related to the tag id of 2.
+//
+//   }
+//
+//});
+//
+//
+//Route::get('video/{id}/tag', function ($id){ // Finds the owner of a tag id. It will only work when the tag id that is entered is related to a video since I am using the videos method.
+//
+//    $tag = Tag::find($id); // Finds the id of a tag in the database table.
+//
+//    foreach ($tag->videos as $video){ // Using the videos method and looping through the different videos that are in the database.
+//
+//        return $video->name; // Prints out the name of the video which is related the tag id of 1.
+//
+//    }
+//
+//
+//});
 
-   $tag = Tag::find(2);
+/*
+|--------------------------------------------------------------------------
+| CRUD Application
+|--------------------------------------------------------------------------
+|
+|
+*/
 
-   foreach($tag->posts as $post){
-
-       return $post->title;
-
-   }
-
-});
-
-
-Route::get('video/{id}/tag', function ($id){ // Finds the owner of a tag id.
-
-    $tag = Tag::find($id); // Finds the id of a tag in the database table.
-
-    foreach ($tag->videos as $video){ // Using the videos method and looping through the different videos that are in the database.
-
-        return $video->name; // Prints out the name of the video which is related the tag id of 1.
-
-    }
-
-
-});
-
-
-
+Route::resource('/posts', 'PostController');
 
 
 
